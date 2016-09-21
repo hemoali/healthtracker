@@ -6,8 +6,11 @@ app.AppView = Backbone.View.extend({
 		'click #search_button': 'searchData'
 	},
 	initialize: function (options) {
-		this.search_text = $('#search_text');
+		this.search_text = this.$('#search_text');
+		this.total_calories = this.$('#total_calories');
+
 		this.listenTo(app.SavedItems, 'add', this.addItemToSavedItems);
+		this.listenTo(app.SavedItems, 'destroy', this.removeItemFromSavedItems);
 		this.listenTo(app.SearchItems, 'add', this.addItemToSearchItems);
 
 		_.bindAll(this, "addItemFromSearchItemsToSavedItems");
@@ -21,6 +24,10 @@ app.AppView = Backbone.View.extend({
 			vent: app.vent
 		});
 		$('#saved_items_list').append(view.render().el);
+		this.refreshTotalCalories();
+	},
+	removeItemFromSavedItems: function () {
+		this.refreshTotalCalories();
 	},
 	addItemToSearchItems: function (item) {
 		var view = new app.SearchItemView({
@@ -29,6 +36,9 @@ app.AppView = Backbone.View.extend({
 		});
 		$('#search_results_list').append(view.render().el);
 	},
+	addItemFromSearchItemsToSavedItems: function (item) {
+		app.SavedItems.create(item.attributes);
+	},
 	searchData: function () {
 		var search_text = this.search_text.val().trim();
 		if (search_text.length > 0) {
@@ -36,9 +46,6 @@ app.AppView = Backbone.View.extend({
 		} else {
 			alert("Please enter search text");
 		}
-	},
-	addItemFromSearchItemsToSavedItems: function (item) {
-		app.SavedItems.create(item.attributes);
 	},
 	loadDataFromAPI: function (search_text) {
 		_.invoke(app.SearchItems.toArray(), 'destroy');
@@ -58,5 +65,12 @@ app.AppView = Backbone.View.extend({
 		}).fail(function () {
 			alert("Something went wrong, please check your internet connection");
 		});
+	},
+	refreshTotalCalories: function () {
+		var tot_cal = 0;
+		_(app.SavedItems.models).each(function (item) {
+			tot_cal += item.attributes.cal;
+		});
+		this.total_calories.text(tot_cal);
 	}
 });

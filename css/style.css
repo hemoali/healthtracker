@@ -8,6 +8,10 @@
 	max-width: 960px;
 }
 
+#container p {
+	text-align: center;
+}
+
 #items_panel,
 #search_panel {
 	text-align: center;
