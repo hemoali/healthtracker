@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Health Tracker</title>
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+	<div id="container">
+		<section id="search_panel">
+			<div id="search_box">
+				<input type="text" id="search_text" placeholder="Search items...">
+				<button id="search_button">Search</button>
+			</div>
+			<div id="search_results">
+				<ul id="search_results_list"></ul>
+			</div>
+		</section>
+		<section id="items_panel">
+			<h3>Items</h3>
+			<div id="saved_items">
+				<ul id="saved_items_list"></ul>
+			</div>
+		</section>
+	</div>
+	<script src="js/lib/jquery-2.1.4.js"></script>
+	<script src="js/lib/underscore-min.js"></script>
+	<script src="js/lib/backbone-min.js"></script>
+	<script src="js/lib/backbone.localStorage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+* {
+	box-sizing: border-box;
+}
+
+#container {
+	margin: 50px auto;
+	display: flex;
+	max-width: 960px;
+}
+
+#items_panel,
+#search_panel {
+	text-align: center;
+	width: 50%;
+}
+
+#search_panel {}
+
+#items_panel h3 {
+	padding: 0;
+	margin: 0;
+}
