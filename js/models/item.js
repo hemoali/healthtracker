@@ -3,6 +3,6 @@ app.Item = Backbone.Model.extend({
 	defaults: {
 		name: 'Item',
 		cal: '1000',
-		local: 'false'
+		brandName: 'Brand'
 	}
 });

@@ -4,22 +4,39 @@ app.ItemView = Backbone.View.extend({
 
 	template: _.template($('#item-template').html()),
 	events: {
-		'click .destroy': 'clear',
-		'click .add': 'add'
+		'click .destroy': 'clear'
 	},
 	initialize: function () {
-		this.listenTo(this.model, 'change', this.render);
 		this.listenTo(this.model, 'destroy', this.remove);
 	},
-	render: function () {
-		this.$el.html(this.template(this.model.attributes));
-
-		return this;
+	render: function (local) {
+		var attr = this.model.attributes;
+		attr.local = local;
+		this.$el.html(this.template(attr));
 	},
 	clear: function () {
 		this.model.destroy();
+	}
+});
+app.SearchItemView = app.ItemView.extend({
+	initialize: function (options) {
+		app.ItemView.prototype.initialize.call(this);
+		this.vent = options.vent;
+	},
+	events: {
+		'click .add': 'add'
 	},
 	add: function () {
-		alert("Add");
+		this.vent.trigger("addItemFromSearchItemsToSavedItems", this.model);
+	},
+	render: function () {
+		app.ItemView.prototype.render.call(this, false);
+		return this;
+	},
+});
+app.SavedItemView = app.ItemView.extend({
+	render: function () {
+		app.ItemView.prototype.render.call(this, true);
+		return this;
 	}
 });
