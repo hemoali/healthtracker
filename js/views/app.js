@@ -53,7 +53,7 @@ app.AppView = Backbone.View.extend({
 			$.each(result.hits, function (i, field) {
 				app.SearchItems.add(new app.Item({
 					name: field.fields.item_name,
-					brand: field.fields.brand_name,
+					brandName: field.fields.brand_name,
 					cal: field.fields.nf_calories,
 					local: false
 				}));
@@ -71,6 +71,6 @@ app.AppView = Backbone.View.extend({
 		_(app.SavedItems.models).each(function (item) {
 			tot_cal += item.attributes.cal;
 		});
-		this.total_calories.text(tot_cal);
+		this.total_calories.text(Math.round(tot_cal * 100) / 100);
 	}
 });

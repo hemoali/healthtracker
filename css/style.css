@@ -2,6 +2,21 @@
 	box-sizing: border-box;
 }
 
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	transition: 0.4s;
+}
+
+li:hover {
+	background: rgba(229, 223, 223, 0.47);
+	transition: 0.4s;
+}
+
 #container {
 	margin: 50px auto;
 	display: flex;
@@ -18,9 +33,109 @@
 	width: 50%;
 }
 
-#search_panel {}
+
+/*Search Panel*/
+
+#search_panel {
+	padding-right: 10px;
+	padding-left: 6px;
+	text-align: left;
+}
+
+#search_panel ul {
+	padding-right: 10px;
+}
+
+#search_text {
+	margin: 0;
+	width: 80%;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	border: 0;
+	outline: none;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+#search_button {
+	background: #fff;
+	cursor: pointer;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	outline: none;
+	padding: 6px;
+	border: 1px solid #999;
+	transition: 0.3s;
+}
+
+#search_button:hover {
+	background: #f0ecec;
+	transition: 0.3s;
+}
+
+
+/*Items Panel*/
+
+#items_panel {
+	padding-left: 10px;
+}
 
 #items_panel h3 {
-	padding: 0;
 	margin: 0;
+	border-bottom: 1px solid #333;
+	font-size: 24px;
+	line-height: 1.4em;
+	padding: 7px;
+	padding-left: 0;
+	padding-top: 0;
+	vertical-align: top;
+	display: table-cell;
+	font-weight: lighter;
+	text-align: left;
+	font-family: helctiva, Arial;
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+#total {
+	font-size: 24px;
+	text-align: left !important;
+}
+
+#total_calories {
+	font-weight: bold;
+}
+
+.itemview {
+	overflow: auto;
+	padding-bottom: 2px;
+	border-bottom: 1px dashed #dbcfcf;
+}
+
+.itemview p {
+	text-align: left !important;
+}
+
+.text_muted {
+	display: inline;
+	float: left;
+	color: #967676;
+	text-align: left;
+}
+
+.add,
+.destroy {
+	float: right;
+	cursor: pointer;
 }
