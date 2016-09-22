@@ -12,7 +12,7 @@ app.AppView = Backbone.View.extend({
 		this.total_calories = this.$('#total_calories');
 		this.daysNav = $("#nav");
 
-		
+
 		this.listenTo(app.SavedItems, 'add', this.addItemToSavedItems);
 		this.listenTo(app.SavedItems, 'destroy', this.removeItemFromSavedItems);
 		this.listenTo(app.SearchItems, 'add', this.addItemToSearchItems);
@@ -77,7 +77,6 @@ app.AppView = Backbone.View.extend({
 		this.filterSavedItems();
 	},
 	addItemToSavedItems: function (item) {
-		console.log(app.activeDay);
 		// Create the new view
 		var view = new app.SavedItemView({
 			model: item
@@ -98,6 +97,7 @@ app.AppView = Backbone.View.extend({
 		$('#search_results_list').append(view.render().el);
 	},
 	addItemFromSearchItemsToSavedItems: function (item) {
+		item.attributes.day = app.activeDay;
 		app.SavedItems.create(item.attributes);
 	},
 	searchData: function () {
