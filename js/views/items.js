@@ -8,6 +8,7 @@ app.ItemView = Backbone.View.extend({
 	},
 	initialize: function () {
 		this.listenTo(this.model, 'destroy', this.remove);
+		this.model.on('changeVisibility', this.changeVisibility, this);
 	},
 	render: function (local) {
 		var attr = this.model.attributes;
@@ -16,6 +17,14 @@ app.ItemView = Backbone.View.extend({
 	},
 	clear: function () {
 		this.model.destroy();
+	},
+	changeVisibility: function () {
+		console.log(this.model.day == app.activeDay, this,this.model.attributes.day, app.activeDay);
+		if (this.model.attributes.day == app.activeDay) {
+			this.el.hidden = false;
+		} else {
+			this.el.hidden = true;
+		}
 	}
 });
 app.SearchItemView = app.ItemView.extend({
@@ -32,7 +41,7 @@ app.SearchItemView = app.ItemView.extend({
 	render: function () {
 		app.ItemView.prototype.render.call(this, false);
 		return this;
-	},
+	}
 });
 app.SavedItemView = app.ItemView.extend({
 	render: function () {

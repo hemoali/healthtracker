@@ -17,6 +17,43 @@ li:hover {
 	transition: 0.4s;
 }
 
+
+/*Nav*/
+
+#nav {
+	margin: 50px auto;
+	max-width: 960px;
+	padding-left: 6px;
+	border-bottom: 1px solid #dbcfcf;
+	overflow: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+.day_link {
+	padding: 6px 10px;
+	text-decoration: none;
+	color: #000;
+	transition: 0.5s;
+	margin: 0 2px;
+}
+
+.active {
+	background: #e3dfdf;
+}
+
+.day_link:hover {
+	background: #e3dfdf;
+	transition: 0.5s;
+}
+
+.day_link:active {
+	color: #000;
+}
+
+
+/*Container*/
+
 #container {
 	margin: 50px auto;
 	display: flex;
