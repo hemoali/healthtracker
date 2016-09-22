@@ -4,6 +4,6 @@ app.Item = Backbone.Model.extend({
 		name: 'Item',
 		cal: '1000',
 		brandName: 'Brand',
-		day: '1'
+		day: '1' // day the item added to
 	}
 });

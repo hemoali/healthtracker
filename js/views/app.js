@@ -3,18 +3,21 @@ var app = app || {};
 app.AppView = Backbone.View.extend({
 	el: '#container',
 	events: {
-		'click #search_button': 'searchData',
-		'click .day_link': 'addNewDay'
+		// Search button excutes searchData function
+		'click #search_button': 'searchData'
 	},
 	initialize: function (options) {
+		// Cache views
 		this.search_text = this.$('#search_text');
 		this.total_calories = this.$('#total_calories');
 		this.daysNav = $("#nav");
 
+		
 		this.listenTo(app.SavedItems, 'add', this.addItemToSavedItems);
 		this.listenTo(app.SavedItems, 'destroy', this.removeItemFromSavedItems);
 		this.listenTo(app.SearchItems, 'add', this.addItemToSearchItems);
 
+		// Bind this event to the proper function using the shared options.vent
 		_.bindAll(this, "addItemFromSearchItemsToSavedItems");
 		options.vent.bind("addItemFromSearchItemsToSavedItems", this.addItemFromSearchItemsToSavedItems);
 
@@ -22,66 +25,76 @@ app.AppView = Backbone.View.extend({
 		if (!(this.lastDay = localStorage.getItem('lastDay'))) {
 			localStorage.setItem('lastDay', this.lastDay = 1);
 		}
+		// Set the active day to the last day when initializing
 		app.activeDay = this.lastDay;
-		//Render days
+		//Render days nav bar
 		this.renderDays();
+		//Fetch the saved items collection
 		app.SavedItems.fetch();
-		this.reFetchSavedItems();
+		//filter the saved items to show only the current day items
+		this.filterSavedItems();
 	},
-	reFetchSavedItems() {
+	filterSavedItems() {
+		// loop through the items and remove call change visibility to display the tasks of the current selected day only
 		app.SavedItems.each(function (model, index) {
 			model.trigger("changeVisibility");
 		});
+		// Refresh the calories total to calcualte the shown elements only
 		this.refreshTotalCalories();
 	},
 	renderDays: function () {
-		this.daysNav.html('');
+		this.daysNav.html(''); // Remove the html of the nav bar
+		//Add the days tabs
 		for (var i = 1; i <= this.lastDay; i++) {
 			this.daysNav.append('<a class="day_link ' + ((i == this.lastDay) ? 'active' : '') + '" data-day="' + i + '" href="#">Day ' + i + '</a>');
 		}
+		// Add the last add_day tab
 		this.daysNav.append('<a class="day_link" id="add_day" href="#">+Day</a>');
+		// set click event to set the active day for the days
 		var self = this;
 		$(".day_link").click(function () {
 			$.proxy(self.setActiveDay($(this).attr('data-day'), this), self);
 		});
+		//Set click event for adding new day
 		$("#add_day").click($.proxy(this.addNewDay, this));
 	},
 	addNewDay: function () {
+		// Add the new day and increaste the lastDay
 		var currentLastDay = localStorage.getItem('lastDay');
 		localStorage.setItem('lastDay', ++currentLastDay);
 		this.lastDay = app.activeDay = currentLastDay;
+		// Re-render days
 		this.renderDays();
 	},
 	setActiveDay: function (day, elem) {
+		// Set the app active day
 		app.activeDay = day;
-
-		app.SavedItems.fetch({
-			data: $.param({
-				'day': app.activeDay
-			})
-		});
+		// Change style of selected element only
 		$('.active').removeClass('active');
 		$(elem).addClass('active');
 
-		this.reFetchSavedItems();
-		this.refreshTotalCalories();
+		//Refilter the items and calculate the total calories
+		this.filterSavedItems();
 	},
 	addItemToSavedItems: function (item) {
+		console.log(app.activeDay);
+		// Create the new view
 		var view = new app.SavedItemView({
-			model: item,
-			vent: app.vent
+			model: item
 		});
+		// Append the view to the list
 		$('#saved_items_list').append(view.render().el);
-		this.refreshTotalCalories();
+		this.filterSavedItems();
 	},
 	removeItemFromSavedItems: function () {
-		this.refreshTotalCalories();
+		this.filterSavedItems();
 	},
 	addItemToSearchItems: function (item) {
 		var view = new app.SearchItemView({
 			model: item,
-			vent: app.vent
+			vent: app.vent // shared vent to trigger the event of adding the items from search items to saved items
 		});
+		// Append the view to the search results list
 		$('#search_results_list').append(view.render().el);
 	},
 	addItemFromSearchItemsToSavedItems: function (item) {
