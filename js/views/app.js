@@ -97,6 +97,7 @@ app.AppView = Backbone.View.extend({
 	},
 	loadDataFromAPI: function (search_text) {
 		_.invoke(app.SearchItems.toArray(), 'destroy');
+		$('#search_results_loadingview').removeAttr('hidden');
 		$.getJSON("https://api.nutritionix.com/v1_1/search/" + search_text + "?fields=item_name,brand_name,item_id,nf_calories&appId=cbc8cc2e&appKey=b0e81dc2410863002692d2f1685220e5", function (result) {
 			$.each(result.hits, function (i, field) {
 				app.SearchItems.add(new app.Item({
@@ -111,8 +112,10 @@ app.AppView = Backbone.View.extend({
 			if (app.SearchItems.length < 1) {
 				alert('Cannot find items for your search value');
 			}
+			$('#search_results_loadingview').attr('hidden', 'hidden');
 		}).fail(function () {
 			alert("Something went wrong, please check your internet connection");
+			$('#search_results_loadingview').removeAttr('hidden', 'hidden');
 		});
 	},
 	refreshTotalCalories: function () {

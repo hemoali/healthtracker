@@ -19,7 +19,6 @@ app.ItemView = Backbone.View.extend({
 		this.model.destroy();
 	},
 	changeVisibility: function () {
-		console.log(this.model.day == app.activeDay, this,this.model.attributes.day, app.activeDay);
 		if (this.model.attributes.day == app.activeDay) {
 			this.el.hidden = false;
 		} else {
