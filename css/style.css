@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 }
 
-h1{
+h1 {
 	text-align: center;
 }
 
@@ -21,9 +21,10 @@ li:hover {
 	transition: 0.4s;
 }
 
+
 /*Nav*/
 
-#nav {
+.nav {
 	margin: 50px auto;
 	max-width: 960px;
 	padding-left: 6px;
@@ -33,7 +34,7 @@ li:hover {
 	white-space: nowrap;
 }
 
-.day_link {
+.day-link {
 	padding: 6px 10px;
 	text-decoration: none;
 	color: #000;
@@ -45,30 +46,30 @@ li:hover {
 	background: #e3dfdf;
 }
 
-.day_link:hover {
+.day-link:hover {
 	background: #e3dfdf;
 	transition: 0.5s;
 }
 
-.day_link:active {
+.day-link:active {
 	color: #000;
 }
 
 
 /*Container*/
 
-#container {
+.container {
 	margin: 50px auto;
 	display: flex;
 	max-width: 960px;
 }
 
-#container p {
+.total {
 	text-align: center;
 }
 
-#items_panel,
-#search_panel {
+.items-panel,
+.search-panel {
 	text-align: center;
 	width: 50%;
 }
@@ -76,25 +77,25 @@ li:hover {
 
 /*Search Panel*/
 
-#search_results_loadingview{
+.search-results-loadingview {
 	width: 80%;
 	margin-top: 30px;
 }
 
-#search_panel {
-	padding-right: 10px;
-	padding-left: 6px;
+.search-panel {
+	padding: 0 10px 0 6px;
 	text-align: left;
 }
 
-#search_results_list {
-	padding-right: 5px;
-	padding-left: 5px;
+.search-results-list {
+	padding: 0 5px;
 }
-#search_box{
+
+.search-box {
 	text-align: center;
 }
-#search_text {
+
+.search-text {
 	margin: 0;
 	width: 80%;
 	font-size: 24px;
@@ -113,7 +114,7 @@ li:hover {
 	font-smoothing: antialiased;
 }
 
-#search_button {
+.search-button {
 	background: #fff;
 	cursor: pointer;
 	font-size: 24px;
@@ -126,7 +127,7 @@ li:hover {
 	transition: 0.3s;
 }
 
-#search_button:hover {
+.search-button:hover {
 	background: #f0ecec;
 	transition: 0.3s;
 }
@@ -134,18 +135,16 @@ li:hover {
 
 /*Items Panel*/
 
-#items_panel {
+.items-panel {
 	padding-left: 10px;
 }
 
-#items_panel h3 {
+.item-panel__h3 {
 	margin: 0;
 	border-bottom: 1px solid #333;
 	font-size: 24px;
 	line-height: 1.4em;
-	padding: 7px;
-	padding-left: 0;
-	padding-top: 0;
+	padding: 0 7px 7px 0;
 	vertical-align: top;
 	display: table-cell;
 	font-weight: lighter;
@@ -156,12 +155,12 @@ li:hover {
 	text-rendering: optimizeLegibility;
 }
 
-#total {
+.total {
 	font-size: 24px;
 	text-align: left !important;
 }
 
-#total_calories {
+.total-calories {
 	font-weight: bold;
 }
 
@@ -171,11 +170,11 @@ li:hover {
 	border-bottom: 1px dashed #dbcfcf;
 }
 
-.itemview p {
+.itemview__title {
 	text-align: left !important;
 }
 
-.text_muted {
+.text-muted {
 	display: inline;
 	float: left;
 	color: #967676;

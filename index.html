@@ -11,42 +11,45 @@
 
 <body>
 	<h1>Health Tracker</h1>
-	<section id="nav">
+	<section id="nav" class="nav">
 		<!-- To be filled with nav tabs of the days-->
 	</section>
-	<div id="container">
-		<section id="search_panel">
-			<div id="search_box">
-				<input type="text" id="search_text" placeholder="Search items...">
-				<button id="search_button">Search</button>
-				<progress id="search_results_loadingview" hidden>
+	<div id="container" class="container">
+		<section id="search-panel" class="search-panel">
+			<div id="search-box" class="search-box">
+				<input type="text" id="search-text" placeholder="Search items..." class="search-text">
+				<button id="search-button" class="search-button">Search</button>
+				<progress id="search-results-loadingview" class="search-results-loadingview" hidden>
                 </progress>
 			</div>
-			<div id="search_results">
-				<ul id="search_results_list"></ul>
+			<div id="search-results">
+				<ul id="search-results-list" class="search-results-list"></ul>
 			</div>
 		</section>
-		<section id="items_panel">
-			<h3>Items</h3>
-			<div id="saved_items">
-				<ul id="saved_items_list"></ul>
+		<section id="items-panel" class="items-panel">
+			<h3 class="item-panel__h3">Items</h3>
+			<div id="saved-items">
+				<ul id="saved-items-list"></ul>
 			</div>
-			<p id="total">Total: <span id="total_calories">0</span> Calories</p>
+			<p id="total" class="total">Total: <span id="total-calories" class="total-calories">0</span> Calories</p>
 
 		</section>
 	</div>
 
 	<script type="text/template" id="item-template">
 		<div class="itemview">
-			<p><strong><%= name %> (<em><%= cal %> Cal.</em>)</strong>
+			<p class="itemview__title"><strong><%= name %> (<em><%= cal %> Cal.</em>)</strong>
 			</p>
 			<div>
-				<span class="text_muted"><%= brandName %></span>
+				<span class="text-muted"><%= brandName %></span>
 				<% if (local) { %><i class="fa fa-trash-o destroy"></i>
 					<% }else{ %><i class="fa fa-plus add"></i>
 						<% } %>
 			</div>
 		</div>
+	</script>
+	<script type="text/template" id="days-item-template">
+		<a class="day-link <%= active %>" data-day="<%= i %>" href="#">Day <%= i %> </a>
 	</script>
 	<script src="js/lib/jquery-2.1.4.js"></script>
 	<script src="js/lib/underscore-min.js"></script>
