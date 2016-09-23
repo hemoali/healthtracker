@@ -2,60 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Health Tracker</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Health Tracker</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 
 <body>
-    <h1>Health Tracker</h1>
-    <section id="nav">
-        <!-- To be filled with nav tabs of the days-->
-    </section>
-    <div id="container">
-        <section id="search_panel">
-            <div id="search_box">
-                <input type="text" id="search_text" placeholder="Search items...">
-                <button id="search_button">Search</button>
-                <progress id="search_results_loadingview" hidden>
+	<h1>Health Tracker</h1>
+	<section id="nav">
+		<!-- To be filled with nav tabs of the days-->
+	</section>
+	<div id="container">
+		<section id="search_panel">
+			<div id="search_box">
+				<input type="text" id="search_text" placeholder="Search items...">
+				<button id="search_button">Search</button>
+				<progress id="search_results_loadingview" hidden>
                 </progress>
-            </div>
-            <div id="search_results">
-                <ul id="search_results_list"></ul>
-            </div>
-        </section>
-        <section id="items_panel">
-            <h3>Items</h3>
-            <div id="saved_items">
-                <ul id="saved_items_list"></ul>
-            </div>
-            <p id="total">Total: <span id="total_calories">0</span> Calories</p>
+			</div>
+			<div id="search_results">
+				<ul id="search_results_list"></ul>
+			</div>
+		</section>
+		<section id="items_panel">
+			<h3>Items</h3>
+			<div id="saved_items">
+				<ul id="saved_items_list"></ul>
+			</div>
+			<p id="total">Total: <span id="total_calories">0</span> Calories</p>
 
-        </section>
-    </div>
+		</section>
+	</div>
 
-    <script type="text/template" id="item-template">
-        <div class="itemview">
-            <p><strong><%= name %> (<em><%= cal %> Cal.</em>)</strong>
-            </p>
-            <div>
-                <span class="text_muted"><%= brandName %></span>
-                <% if (local) { %><i class="fa fa-trash-o destroy"></i>
-                    <% }else{ %><i class="fa fa-plus add"></i>
-				<% } %>
-            </div>
-        </div>
-    </script>
-    <script src="js/lib/jquery-2.1.4.js"></script>
-    <script src="js/lib/underscore-min.js"></script>
-    <script src="js/lib/backbone-min.js"></script>
-    <script src="js/lib/backbone.localStorage.js"></script>
-    <script src="js/models/item.js"></script>
-    <script src="js/collections/items.js"></script>
-    <script src="js/views/items.js"></script>
-    <script src="js/views/app.js"></script>
-    <script src="js/app.js"></script>
+	<script type="text/template" id="item-template">
+		<div class="itemview">
+			<p><strong><%= name %> (<em><%= cal %> Cal.</em>)</strong>
+			</p>
+			<div>
+				<span class="text_muted"><%= brandName %></span>
+				<% if (local) { %><i class="fa fa-trash-o destroy"></i>
+					<% }else{ %><i class="fa fa-plus add"></i>
+						<% } %>
+			</div>
+		</div>
+	</script>
+	<script src="js/lib/jquery-2.1.4.js"></script>
+	<script src="js/lib/underscore-min.js"></script>
+	<script src="js/lib/backbone-min.js"></script>
+	<script src="js/lib/backbone.localStorage.js"></script>
+	<script src="js/models/item.js"></script>
+	<script src="js/collections/items.js"></script>
+	<script src="js/views/items.js"></script>
+	<script src="js/views/app.js"></script>
+	<script src="js/app.js"></script>
 
 </body>
 

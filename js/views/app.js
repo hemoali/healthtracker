@@ -97,6 +97,9 @@ app.AppView = Backbone.View.extend({
      * @param {object} item The model of the new view
      */
     addItemToSavedItems: function(item) {
+        // Remove old list of searched items
+        _.invoke(app.SearchItems.toArray(), 'destroy');
+        $('#search_text').val('');
         // Create the new view
         var view = new app.SavedItemView({
             model: item
